@@ -1,0 +1,11 @@
+name: wTeams
+version: '${project.version}'
+main: me.wintyy.wteams.WTeams
+api-version: 1.19
+commands:
+  team:
+    aliases:
+      - teams
+      - t
+      - wteams
+      - wteam

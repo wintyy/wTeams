@@ -1,0 +1,19 @@
+PREFIX: "&b&lwTeams &7» "
+
+CREATED: "&aTeam Created!"
+
+CANT_CREATE_EMPTY: "&cPlease provide a name for the Team"
+CANT_CREATE_ALREADY_EXISTS: "&cTeam you are trying to make already exists."
+
+INFO_INVALID: "&cPlease provide a valid team name"
+INFO:
+  - "&8&m                                                        "
+  - ""
+  - "&fName: &b%team%"
+  - "&fLeader: &b%leader%"
+  - "&fMembers: &b%members%"
+  - "&fAllies: &b%allies%"
+  - ""
+  - "&8&m                                                        "
+
+DISBAND: "&4Team Disbanded!"

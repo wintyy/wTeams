@@ -1,7 +1,6 @@
 package me.wintyy.wteams.commands;
 
-import me.wintyy.wteams.commands.subcommands.Create;
-import me.wintyy.wteams.commands.subcommands.Info;
+import me.wintyy.wteams.commands.subcommands.*;
 import me.wintyy.wteams.objects.SubCommand;
 import me.wintyy.wteams.utils.ColorUtil;
 import org.bukkit.command.Command;
@@ -21,6 +20,12 @@ public class MainCommand implements CommandExecutor {
     public MainCommand(){
         subCommands.add(new Create());
         subCommands.add(new Info());
+        subCommands.add(new Disband());
+        subCommands.add(new Rename());
+        subCommands.add(new Invite());
+        subCommands.add(new Uninvite());
+        subCommands.add(new Join());
+        subCommands.add(new Leave());
     }
 
 

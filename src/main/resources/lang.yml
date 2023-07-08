@@ -17,3 +17,18 @@ INFO:
   - "&8&m                                                        "
 
 DISBAND: "&4Team Disbanded!"
+CANT_DISBAND: "&4Cant Disband the team."
+
+RENAME: "&aTeam Renamed to %newname%"
+CANT_RENAME: "&cCant Rename the team"
+
+INVITED: "&aInvited %player% to the team"
+CANT_INVITE: "&4Cant invite %player%"
+CANT_UNINVITE: "&4Cant uninvite %player%"
+UNINVITED: "&cUninvited %player%"
+
+CANT_JOIN: "&cCant join the team"
+JOINED: "&aJoined the team"
+
+CANT_LEAVE: "&cCant Leave the team"
+LEAVE: "&aYou Left your team. they will miss you : ("

@@ -4,12 +4,12 @@ import lombok.Getter;
 import me.wintyy.wteams.commands.MainCommand;
 import me.wintyy.wteams.managers.TeamManager;
 import me.wintyy.wteams.objects.PlayerTeam;
+import me.wintyy.wteams.papi.Papi;
 import me.wintyy.wteams.utils.ColorUtil;
 import me.wintyy.wteams.utils.ConfigUtil;
 import me.wintyy.wteams.utils.LangConfigUtil;
 import me.wintyy.wteams.utils.TeamsConfigUtil;
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -32,6 +32,8 @@ public final class WTeams extends JavaPlugin {
         TeamManager teamManager = new TeamManager();
         getCommand("team").setExecutor(new MainCommand());
         CommandSender cs = Bukkit.getConsoleSender();
+
+        new Papi().register();
 
 
         for (String teamname : TeamsConfigUtil.getConfig().getKeys(false)){

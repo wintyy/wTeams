@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scoreboard.Team;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +24,8 @@ public class TeamManager {
 
     @Getter
     public static ArrayList<PlayerTeam> teams = new ArrayList<>();
+
+    public static Map<Player, Map<PlayerTeam, Boolean>> inviteMap = new HashMap<>();
 
     FileConfiguration teamsyml = TeamsConfigUtil.getConfig();
 
@@ -62,6 +65,67 @@ public class TeamManager {
             teamsyml.set(team.getName(), null);
             teams.remove(team);
 
+            try {
+                teamsyml.save(file);
+            } catch (IOException e) {
+                Bukkit.getLogger().severe("Failed to save data for " + team.getName());
+            }
+        }
+    }
+
+
+    public void invitePlayer(PlayerTeam team, Player player){
+        if (inviteMap.containsKey(player)){
+            Map<PlayerTeam, Boolean> tempInviteMap = new HashMap<>(inviteMap.get(player));
+            tempInviteMap.put(team, true);
+            inviteMap.put(player, tempInviteMap);
+            return;
+        }
+        Map<PlayerTeam, Boolean> tempInviteMap = new HashMap<>();
+        tempInviteMap.put(team, true);
+        inviteMap.put(player, tempInviteMap);
+    }
+
+    public void uninvitePlayer(PlayerTeam team, Player player){
+        if (inviteMap.containsKey(player)){
+            Map<PlayerTeam, Boolean> tempInviteMap = new HashMap<>(inviteMap.get(player));
+            tempInviteMap.put(team, false);
+            inviteMap.put(player, tempInviteMap);
+            return;
+        }
+        Map<PlayerTeam, Boolean> tempInviteMap = new HashMap<>();
+        tempInviteMap.put(team, false);
+        inviteMap.put(player, tempInviteMap);
+    }
+
+    public boolean isInvited(PlayerTeam team, Player player){
+        if (team != null){
+            if (inviteMap.containsKey(player)){
+                Map<PlayerTeam, Boolean> tempInviteMap = new HashMap<>(inviteMap.get(player));
+                return tempInviteMap.get(team);
+            }
+        }
+        return false;
+    }
+
+
+
+    public void renameTeam(PlayerTeam team, String name){
+        if (team != null){
+            teamsyml.set(team.getName(), null);
+            team.setName(name);
+            teamsyml.createSection(name);
+            List<String> tempUuidList = new ArrayList<>();
+            for (UUID uuid : team.getMembers()){
+                tempUuidList.add(uuid.toString());
+            }
+            teamsyml.set(team.getName() + ".uuid", team.getUuid().toString());
+            teamsyml.set(team.getName() + ".allies", team.getAllies());
+            teamsyml.set(team.getName() + ".leader", team.getLeader().toString());
+            teamsyml.set(team.getName() + ".members", tempUuidList);
+            if (team.getHome() != null) {
+                teamsyml.set(team.getName() + ".home", team.getHome());
+            }
             try {
                 teamsyml.save(file);
             } catch (IOException e) {

@@ -1,9 +1,14 @@
 PREFIX: "&b&lwTeams &7» "
 
+FRIENDLY_FIRE: "&cPvP is &4Disabled&c between &aTeam Members &cand &dAllies"
+
+
 CREATED: "&aTeam Created!"
 
 CANT_CREATE_EMPTY: "&cPlease provide a name for the Team"
 CANT_CREATE_ALREADY_EXISTS: "&cTeam you are trying to make already exists."
+CANT_CREATE_NAME_TOO_SHORT: "&cName you provided is too Short"
+CANT_CREATE_NAME_TOO_LONG: "&cName you provided is too Long"
 
 INFO_INVALID: "&cPlease provide a valid team name"
 INFO:
@@ -24,6 +29,12 @@ CANT_RENAME: "&cCant Rename the team"
 
 INVITED: "&aInvited %player% to the team"
 CANT_INVITE: "&4Cant invite %player%"
+CANT_INVITE_FULL: "&4Cant Invite. your team is Full"
+
+KICK: "&aKicked %player% from the team"
+CANT_KICK: "&cCant Kick"
+
+
 CANT_UNINVITE: "&4Cant uninvite %player%"
 UNINVITED: "&cUninvited %player%"
 
@@ -32,3 +43,16 @@ JOINED: "&aJoined the team"
 
 CANT_LEAVE: "&cCant Leave the team"
 LEAVE: "&aYou Left your team. they will miss you : ("
+
+CANT_ALLY: "&cCant Ally that team"
+CANT_ALLY_LIMIT: "&cYou already have too many Allies"
+ALLY_REQUEST_SENT: "&aSent ally request"
+ALLY_REQUEST: "&a%team% wants to be your ally! &7&l| &f/team ally %team%"
+
+ALLY_ACCEPT: "&aYou and %team% are now allies!"
+
+CANT_SETHOME: "&cOnly leaders can set homes."
+SETHOME: "&aSuccessfully set the home location"
+
+NO_HOME: "&cYour team doesnt have a home"
+HOME_TP: "&aTeleported to Team Home"

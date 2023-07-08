@@ -12,7 +12,7 @@ public class PlayerTeam {
 
     private String name;
     private UUID uuid;
-    private List<PlayerTeam> allies;
+    private List<UUID> allies;
     private Location home;
     private List<UUID> members;
     private UUID leader;

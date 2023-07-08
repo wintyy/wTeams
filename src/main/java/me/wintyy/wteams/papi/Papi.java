@@ -60,7 +60,7 @@ public class Papi extends PlaceholderExpansion implements Relational {
             }
             if(team1.getMembers().contains(two.getUniqueId())) {
                 return ColorUtil.CC("&a");
-            } else if (team1.getAllies().contains(team2)) {
+            } else if (team1.getAllies().contains(team2.getUuid())) {
                 return ColorUtil.CC("&d");
             }else{
                 return ColorUtil.CC("&4");

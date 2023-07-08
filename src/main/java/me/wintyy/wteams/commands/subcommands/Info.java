@@ -52,12 +52,15 @@ public class Info extends SubCommand {
             OfflinePlayer leader = Bukkit.getOfflinePlayer(team.getLeader());
             List<String> members = new ArrayList<>();
             List<String> allies = new ArrayList<>();
-            if (team.getAllies() == null){
+            if (team.getAllies().isEmpty()){
                 allies.clear();
                 allies.add(ColorUtil.CC("None"));
             }else{
-                for (PlayerTeam allyTeam : team.getAllies()){
-                    allies.add(allyTeam.getName());
+                for (UUID allyTeam : team.getAllies()){
+                    PlayerTeam ally = teamManager.getTeam(allyTeam);
+                    if (ally != null) {
+                        allies.add(ally.getName());
+                    }
                 }
             }
             for (UUID uuid : team.getMembers()){

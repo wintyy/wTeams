@@ -10,10 +10,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-public class Invite extends SubCommand {
+public class Kick extends SubCommand {
     @Override
     public String getName() {
-        return "invite";
+        return "kick";
     }
 
     @Override
@@ -23,12 +23,12 @@ public class Invite extends SubCommand {
 
     @Override
     public String getUsage() {
-        return "/team invite <player>";
+        return "/team kick <player>";
     }
 
     @Override
     public String getDescription() {
-        return "Invite a player to your team. (only works for leaders)";
+        return "Kick a player from your team (only leaders can do it)";
     }
 
     @Override
@@ -38,31 +38,31 @@ public class Invite extends SubCommand {
         FileConfiguration cfg = ConfigUtil.getConfig();
         String prefix = ColorUtil.CC(lang.getString("PREFIX"));
         if (args.length == 1){
-            player.sendMessage(ColorUtil.CC("&c/team invite <player>"));
+            player.sendMessage(ColorUtil.CC("&c/team kick <player>"));
             return;
         }
         if (args.length > 1){
             PlayerTeam team = teamManager.getPlayerTeam(player);
-            Player found = Bukkit.getPlayer(args[1]);
-            if (found == null){
-                player.sendMessage(prefix + ColorUtil.CC(lang.getString("CANT_INVITE")));
+            Player target = Bukkit.getPlayer(args[1]);
+            if (target == null){
+                player.sendMessage(prefix + ColorUtil.CC(lang.getString("CANT_KICK")));
                 return;
             }
             if (team == null){
-                player.sendMessage(prefix + ColorUtil.CC(lang.getString("CANT_INVITE")));
+                player.sendMessage(prefix + ColorUtil.CC(lang.getString("CANT_KICK")));
                 return;
             }
             if (!team.getLeader().equals(player.getUniqueId())){
-                player.sendMessage(prefix + ColorUtil.CC(lang.getString("CANT_INVITE")));
+                player.sendMessage(prefix + ColorUtil.CC(lang.getString("CANT_KICK")));
                 return;
             }
-            if (team.getMembers().size() == cfg.getInt("MAX_SIZE")){
-                player.sendMessage(prefix + ColorUtil.CC(lang.getString("CANT_INVITE_FULL")));
+            if (!team.getMembers().contains(target.getUniqueId())){
+                player.sendMessage(prefix + ColorUtil.CC(lang.getString("CANT_KICK")));
                 return;
             }
-            player.sendMessage(prefix + ColorUtil.CC(lang.getString("INVITED")
+            player.sendMessage(prefix + ColorUtil.CC(lang.getString("KICK")
                     .replace("%player%", args[1])));
-            teamManager.invitePlayer(team, found);
+            team.getMembers().remove(target.getUniqueId());
         }
     }
 }

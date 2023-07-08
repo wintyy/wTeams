@@ -26,6 +26,11 @@ public class MainCommand implements CommandExecutor {
         subCommands.add(new Uninvite());
         subCommands.add(new Join());
         subCommands.add(new Leave());
+        subCommands.add(new Kick());
+        subCommands.add(new Ally());
+        subCommands.add(new Unally());
+        subCommands.add(new Sethome());
+        subCommands.add(new Home());
     }
 
 
